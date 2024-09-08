@@ -1,5 +1,5 @@
 # This file is placed in the Public Domain.
-# pylint: disable=W0613,WW0718
+# pylint: disable=W0613,W0718
 
 "client"
 
