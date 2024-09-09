@@ -9,7 +9,7 @@ import time
 
 
 from objx import Object
-from objw import find, sync, fntime
+from objw import find, fntime, sync, whitelist
 from objz import Commands, laps
 
 
@@ -20,6 +20,9 @@ class Log(Object):
     def __init__(self):
         super().__init__()
         self.txt = ''
+
+
+whitelist(Log)
 
 
 def log(event):

@@ -21,7 +21,7 @@ from urllib.parse import quote_plus, urlencode
 
 
 from objx import Default, Object, construct, fmt, update
-from objw import find, fntime, last, sync
+from objw import find, fntime, last, sync, whitelist
 from objt import Repeater, launch
 from objz import Broker, Commands, debug, laps, spl
 
@@ -53,6 +53,9 @@ class Feed(Default):
     "Feed"
 
 
+whitelist(Feed)
+
+
 class Rss(Default):
 
     "Rss"
@@ -64,9 +67,15 @@ class Rss(Default):
         self.rss          = ''
 
 
+whitelist(Rss)
+
+
 class Urls(Default):
 
     "Seen"
+
+
+whitelist(Urls)
 
 
 class Fetcher(Object):

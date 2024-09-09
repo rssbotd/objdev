@@ -1,0 +1,4 @@
+bin/check
+bin/lint
+bin/diff
+bin/status

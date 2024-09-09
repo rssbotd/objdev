@@ -9,7 +9,7 @@ import time
 
 
 from objx import Object
-from objw import find, fntime, sync
+from objw import find, fntime, sync, whitelist
 from objz import Commands, laps
 
 
@@ -25,6 +25,9 @@ class Todo(Object):
     def __init__(self):
         Object.__init__(self)
         self.txt = ''
+
+
+whitelist(Todo)
 
 
 def dne(event):

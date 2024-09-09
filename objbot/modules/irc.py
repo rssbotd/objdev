@@ -18,7 +18,7 @@ import _thread
 
 from objr import Event
 from objx import Default, Object, edit, fmt, keys
-from objw import last, sync
+from objw import last, sync, whitelist
 from objt import later, launch
 from objz import Broker, Client, Commands, Logging
 from objz import command, debug
@@ -66,6 +66,9 @@ class Config(Default):
         self.realname = self.realname or Config.realname
         self.server = self.server or Config.server
         self.username = self.username or Config.username
+
+
+whitelist(Config)
 
 
 class TextWrap(textwrap.TextWrapper):
