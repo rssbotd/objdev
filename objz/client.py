@@ -9,8 +9,8 @@ from objt.errors  import later
 from objx.object  import Object
 
 
+from .broker  import Broker
 from .command import Commands
-from .fleet   import Fleet
 from .parse   import parse
 
 
@@ -22,14 +22,18 @@ class Client(Reactor):
 
     def __init__(self):
         Reactor.__init__(self)
+        Broker.register(self)
         self.register("command", command)
-        Fleet.register(self)
+
+    def display(self, evt):
+        for text in evt.result:
+            self.say(evt.channel, text)
 
     def dosay(self, channel, txt):
         "make say."
         self.raw(txt)
 
-    def say(self, _channel, txt):
+    def say(self, channel, txt):
         "echo on verbose."
         self.raw(txt)
 
@@ -48,7 +52,7 @@ def command(bot, evt):
         except Exception as ex:
             later(ex)
     if "ready" in dir(evt):
-        evt.display()
+        bot.display(evt)
         evt.ready()
 
 

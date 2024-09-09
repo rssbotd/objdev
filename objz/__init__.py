@@ -4,26 +4,25 @@
 "objects shell"
 
 
-from . import client, command, console, event, fleet, main, parse
+
+from . import broker, client, command, console, main, parse
 
 
+from .broker  import *
 from .client  import *
 from .command import *
 from .console import *
-from .event   import *
-from .fleet   import *
 from .main    import *
 from .parse   import *
 
 
 def __dir__():
     return (
+        'Broker',
         'Client',
         'Commands',
         'Config',
         'Console',
-        'Event',
-        'Fleet',
         'Logging',
         'command',
         'forever',

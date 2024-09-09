@@ -9,7 +9,6 @@ import threading
 
 
 from objx.default import Default
-from objz.fleet   import Fleet
 
 
 class Event(Default):
@@ -24,13 +23,6 @@ class Event(Default):
         self.thr    = None
         self.txt     = ""
         self.type    = "command"
-
-    def display(self):
-        "display results."
-        bot = Fleet.get(self.orig)
-        if bot:
-            for text in self.result:
-                bot.say(self.channel, text)
 
     def nop(self):
         "do nothing"
