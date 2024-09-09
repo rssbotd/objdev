@@ -5,6 +5,9 @@
 "default"
 
 
+import sys
+
+
 from .object import Object
 
 
@@ -15,7 +18,9 @@ class Default(Object):
         Object.__init__(self)
 
     def __getattr__(self, key):
-        return self.__dict__.get(key, "")
+        if key in sys._getframe(1).f_code.co_varnames:
+            return self.__dict__.get(key, "")
+        return self.__methods__.get(key, None)        
 
 
 def __dir__():

@@ -5,12 +5,25 @@
 "a clean namespace"
 
 
+import sys
+
+
 class Object:
 
     "Object"
 
+    __slots__ = ('__dict__', '__methods__')
+
+    def __init__(self):
+        self.__methods__ = {}
+
     def __contains__(self, key):
         return key in dir(self)
+
+    def __getattr__(self, key):
+        if key in sys._getframe(1).f_code.co_varnames:
+            return self.__dict__.get(key, "")
+        return self.__methods__.get(key, None)        
 
     def __getstate__(self):
         "no pickle."
@@ -23,6 +36,12 @@ class Object:
 
     def __oid__(self):
         return 1
+
+    def setattr(self, key, value):
+        if key in sys._getframe(1).f_code.co_varnames:
+            self.__dict__[key] = value
+        else:
+            self.__methods__[key] = value
 
     def __str__(self):
         return str(self.__dict__)

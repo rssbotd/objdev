@@ -7,31 +7,29 @@
 rpr = object.__repr__
 
 
+from .object import Object, values
+
+
 class Broker:
 
     "Fleet"
 
-    objs = []
+    objs = Object()
 
     @staticmethod
     def all():
         "return all objects."
-        return Broker.objs
+        return values(Broker.objs)
 
     @staticmethod
     def get(orig):
         "return object by matching repr."
-        res = None
-        for obj in Broker.objs:
-            if rpr(obj) == orig:
-                res = obj
-                break
-        return res
+        return getattr(Broker.objs, orig, None)
 
     @staticmethod
     def register(obj):
         "add bot."
-        Broker.objs.append(obj)
+        setattr(Broker.objs, rpr(obj), obj)
 
 
 def __dir__():
