@@ -5,7 +5,7 @@
 
 
 
-from . import broker, client, command, console, main, parse
+from . import broker, client, command, console, main, parser
 
 
 from .broker  import *
@@ -13,7 +13,7 @@ from .client  import *
 from .command import *
 from .console import *
 from .main    import *
-from .parse   import *
+from .parser  import *
 
 
 def __dir__():

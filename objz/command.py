@@ -5,8 +5,8 @@
 "commands"
 
 
-from objt import later
-from objz import parse
+from objt.errors import later
+from objz.parser import parse
 
 
 class Commands:

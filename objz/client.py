@@ -11,7 +11,7 @@ from objx.object  import Object
 
 from .broker  import Broker
 from .command import Commands
-from .parse   import parse
+from .parser   import parse
 
 
 class Client(Reactor):
