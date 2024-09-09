@@ -6,10 +6,10 @@
 
 from objr.reactor import Reactor
 from objt.errors  import later
+from objx.broker  import Broker
 from objx.object  import Object
 
 
-from .broker  import Broker
 from .command import Commands
 from .parser   import parse
 
