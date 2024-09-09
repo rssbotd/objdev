@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain
+
+
+"linted"
+
+
+import os
+import sys
+
+
+os.environ["PYTHONPATH"] = os.getcwd()
+
+
+NAME = "objbot"
+TODO = ["objr", "objt", "objw", "objx", "objz", "objbot"]
+
+
+def popen(txt):
+    "run text in popen."
+    res = os.popen(txt).readlines()
+    gotcha = False
+    if res and not res[-1].strip().endswith("clean"):
+        gotcha = True
+        for line in res:
+            print(line.rstrip())
+            sys.stdout.flush()
+    return gotcha
+
+
+if os.path.exists("bin/clean"):
+    popen("bin/clean")
+
+
+for todo in TODO:
+    os.chdir(f"src/{todo}")
+    if popen(f"git status"):
+         print(f"{todo.upper()}")
+    os.chdir("../..")
