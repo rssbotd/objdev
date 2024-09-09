@@ -1,3 +1,4 @@
+bin/clean
 bin/check
 bin/lint
 bin/diff
