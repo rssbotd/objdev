@@ -18,9 +18,7 @@ class Default(Object):
         Object.__init__(self)
 
     def __getattr__(self, key):
-        if key in sys._getframe(1).f_code.co_varnames:
-            return self.__dict__.get(key, "")
-        return self.__methods__.get(key, None)        
+        return self.__dict__.get(key, "")
 
 
 def __dir__():
