@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+# pylint: disable=C,I,R
+
+
+"clean directories"
+
+
+import os
+import shutil
+import sys
+
+
+def j(*args):
+    return os.path.join(*args)
+
+
+NAME = "objbot"
+PATH = os.getcwd()
+DIST = j(os.getcwd(), "distro")
+SRC = j(os.getcwd(), "src")
+SKIP = ["bin", "build", 'dist', "env", ".git"]
+TODO = ["objr", "objt", "objw", "objx", "objz", "objbot"]
+
+
+def loop(path, txt, depth=0):
+    old = os.getcwd()
+    os.chdir(path)
+    dpth = 0
+    for fnn in os.listdir(path):
+        if fnn in SKIP:
+            continue
+        dpth += 1
+        old = os.getcwd()
+        fpath = j(path, fnn)
+        if os.path.isdir(fpath) and dpth <= depth:
+            loop(fpath, txt)
+        if not os.path.isdir(fpath):
+            continue
+        os.chdir(fpath)
+        popen(txt)
+        os.chdir(old)
+    os.chdir(old)
+
+
+def looper(path, txt):
+    for todo in TODO:
+        loop(jn(path, todo), txt)
+    
+
+def popen(txt):
+    for line in os.popen(txt).readlines():
+        print(line.rstrip())
+        sys.stdout.flush()
+
+
+def main():
+    if os.path.exists("distro"):
+        shutil.rmtree('distro')
+    os.mkdir("distro")
+    os.chdir("src")
+    for todo in TODO:
+        os.chdir(j(SRC, todo))
+        popen("python3 setup.py sdist")
+        popen(f"cp dist/* {DIST}")
+
+
+if __name__ == "__main__":
+    main()
