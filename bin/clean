@@ -38,15 +38,15 @@ def popen(txt):
 
 
 def main():
-    popen("rm -fR DEAD* build dist MANIFEST *.egg-info *.whl")
+    popen("rm -fR DEAD* build MANIFEST *.egg-info *.whl")
     popen("rm -fR .pytest_cache .test __pycache__ .ruff_cache")
     popen("rm -fR .*~ *~")
     if "-f" in sys.argv:
+        popen("rm -fR dist")
         popen("rm -fR html store env")
-        popen('rm -fR docs/otpcr.*.rst')
     loop(".", "rm -fR *~")
     loop(".", "rm -fR __pycache__")
-
+    loop(".", "rm -fR DEAD* build dist MANIFEST *.egg-info *.whl")
 
 if __name__ == "__main__":
     main()

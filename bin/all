@@ -1,5 +1,7 @@
 bin/clean
 bin/check
 bin/lint
-bin/diff
+#bin/diff
 bin/status
+bin/builder
+bin/mkenv
