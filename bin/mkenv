@@ -19,8 +19,9 @@ def popen(txt):
         print(line.strip())
         sys.stdout.flush()
 
+
 os.environ["PYTHONPATH"] = "src"
-popen("bin/clean -f")
-popen("bin/builder")
+
+
 popen("python3 -mvirtualenv --system-site-packages env")
 popen("env/bin/pip3 install %s -f distro --upgrade" % NAME)

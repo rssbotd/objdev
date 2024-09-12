@@ -13,7 +13,7 @@ os.environ["PYTHONPATH"] = os.getcwd()
 
 
 NAME = "objbot"
-TODO = ["objr", "objt", "objw", "objx", "objz", "objbot/modules"]
+TODO = ["objr", "objt", "objw", "objx", "objz", "objbot"]
 
 
 def popen(txt):
@@ -30,4 +30,4 @@ if os.path.exists("bin/clean"):
 
 
 for todo in TODO:
-    popen(f"pylint {todo}/*.py")
+    popen(f"pylint src/{todo}/{todo}/*.py")

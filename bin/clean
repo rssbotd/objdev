@@ -42,7 +42,7 @@ def main():
     popen("rm -fR .pytest_cache .test __pycache__ .ruff_cache")
     popen("rm -fR .*~ *~")
     if "-f" in sys.argv:
-        popen("rm -fR dist")
+        popen("rm -fR dist distro")
         popen("rm -fR html store env")
     loop(".", "rm -fR *~")
     loop(".", "rm -fR __pycache__")
