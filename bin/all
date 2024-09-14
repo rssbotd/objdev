@@ -1,4 +1,5 @@
-bin/clean
+rm -fR ~/.cache/pip
+bin/clean -f
 bin/check
 bin/lint
 #bin/diff
