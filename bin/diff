@@ -13,15 +13,18 @@ os.environ["PYTHONPATH"] = os.getcwd()
 
 
 NAME = "objbot"
-TODO = ["objr", "objt", "objw", "objx", "objz", "objbot"]
+TODO = ["objr", "objt", "objw", "objx", "objz"]
 
 
 def popen(txt):
     "run text in popen."
     for line in os.popen(txt).readlines():
-        if not line.strip() or line.startswith("Your") or line.startswith("---"):
-            continue 
-        if line.startswith("diff ") or line.startswith("Only"):
+        if True and (not line.strip() or
+           line.startswith("Your") or
+           line.startswith("---") or
+           line.startswith("Only ")):
+               continue 
+        if True and line.startswith("diff "):
             print(line.rstrip())
             sys.stdout.flush()
 
@@ -31,4 +34,12 @@ if os.path.exists("bin/clean"):
 
 
 for todo in TODO:
-    popen(f"diff {todo} src/{todo}/{todo}")
+    path = f"src/objbot/{todo}"
+    if not os.path.exists(path):
+        continue
+    for tdo in TODO:
+        pth = f"src/{tdo}/{todo}"
+        if not os.path.exists(pth):
+            continue
+        txt = f"diff src/objbot/{todo} {pth}"
+        popen(txt)

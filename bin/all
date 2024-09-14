@@ -2,7 +2,7 @@ rm -fR ~/.cache/pip
 bin/clean -f
 bin/check
 bin/lint
-#bin/diff
+bin/diff
 bin/status
 bin/builder
 bin/mkenv
